@@ -1,0 +1,47 @@
+---
+import { cn } from "@/shared/lib/cn";
+
+import styles from "./styles.module.css";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"button"> {
+  class?: string;
+  size?: "sm" | "md" | "lg" | "xl" | "2xl";
+  variant?:
+    | "primary"
+    | "secondary-gray"
+    | "secondary-color"
+    | "link-gray"
+    | "link-color"
+    | "tertiary-gray";
+  iconOnly?: boolean;
+  loading?: boolean;
+  disabled?: boolean;
+}
+
+const {
+  class: className,
+  size = "lg",
+  variant = "primary",
+  iconOnly = false,
+  loading = false,
+  disabled,
+  ...rest
+} = Astro.props;
+const classList = cn(
+  styles.root,
+  styles[`size-${size}`],
+  styles[`variant-${variant}`],
+  iconOnly && styles.iconOnly,
+  className,
+);
+---
+
+<button
+  disabled={loading ?? disabled}
+  class:list={classList}
+  aria-disabled={loading ?? disabled}
+  {...rest}
+>
+  {loading ? "Загрузка…" : <slot />}
+</button>

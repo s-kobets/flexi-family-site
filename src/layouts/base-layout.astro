@@ -1,0 +1,232 @@
+---
+import "modern-normalize/modern-normalize.css";
+
+import { ENV } from "@/shared/config";
+import { useTranslations } from "@/shared/i18n";
+
+interface Props {
+  lang: "en" | "ru";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const title = t("meta.title");
+const description = t("meta.description");
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${ENV.SITE_URL}social_{lang}.jpg`} />
+    <meta property="og:image:alt" content="Flexi Family Innovation" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href={`/icon-${ENV.MODE}.svg`} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" /><!-- 180×180 -->
+    <meta name="apple-mobile-web-app-title" content="Flexi Family Innovation" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body id="root">
+    <slot />
+  </body>
+</html>
+<style is:global>
+  :root {
+    /* Typography */
+    --font-sans: "Inter", sans-serif;
+    --font-headings: "Montserrat", sans-serif;
+
+    /* Colors */
+    --color-base-black: #000;
+    --color-base-white: #fff;
+
+    /* Primary */
+    --color-primary-25: #f5f8ff;
+    --color-primary-50: #eff4ff;
+    --color-primary-100: #d1e0ff;
+    --color-primary-200: #b2ddff;
+    --color-primary-300: #84adff;
+    --color-primary-500: #2970ff;
+    --color-primary-600: #155eef;
+    --color-primary-700: #004eeb;
+    --color-primary-800: #0040c1;
+
+    /* Gray */
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f2f4f7;
+    --color-gray-200: #eaecf0;
+    --color-gray-300: #d0d5dd;
+    --color-gray-500: #667085;
+    --color-gray-600: #475467;
+    --color-gray-700: #344054;
+    --color-gray-800: #1d2939;
+    --color-gray-900: #101828;
+
+    /* Error */
+    --color-error-50: #fef3f2;
+    --color-error-100: #fee4e2;
+    --color-error-300: #fda29b;
+    --color-error-500: #f04438;
+    --color-error-600: #d92d20;
+
+    /* Success */
+    --color-success-50: #ecfdf3;
+    --color-success-100: #dcfae6;
+    --color-success-300: #75e0a7;
+    --color-success-500: #17b26a;
+    --color-success-600: #079455;
+
+    /* Yellow */
+    --color-yellow-400: #fac515;
+
+    /* Rose */
+    --color-rose-600: #e31b54;
+
+    /* Display lg */
+    --font-display-lg-semibold: 600 48px/60px var(--font-headings);
+    --font-display-lg-bold: 700 48px/60px var(--font-headings);
+
+    /* Display md */
+    --font-display-md-semibold: 600 36px/44px var(--font-headings);
+
+    /* Display sm */
+    --font-display-sm-regular: 400 30px/38px var(--font-headings);
+    --font-display-sm-semibold: 600 30px/38px var(--font-headings);
+    --font-display-sm-bold: 700 30px/38px var(--font-headings);
+
+    /* Display xs */
+    --font-display-xs-semibold: 600 24px/32px var(--font-headings);
+
+    /* Text xl */
+    --font-text-xl-regular: 400 20px/30px var(--font-sans);
+    --font-text-xl-semibold: 600 20px/30px var(--font-sans);
+    --font-text-xl-bold: 700 20px/30px var(--font-sans);
+
+    /* Text lg */
+    --font-text-lg-regular: 400 18px/28px var(--font-sans);
+    --font-text-lg-semibold: 600 18px/28px var(--font-sans);
+    --font-text-lg-bold: 700 18px/28px var(--font-sans);
+
+    /* Text md */
+    --font-text-md-regular: 400 16px/24px var(--font-sans);
+    --font-text-md-medium: 500 16px/24px var(--font-sans);
+    --font-text-md-semibold: 600 16px/24px var(--font-sans);
+
+    /* Text sm */
+    --font-text-sm-regular: 400 14px/20px var(--font-sans);
+    --font-text-sm-medium: 500 14px/20px var(--font-sans);
+    --font-text-sm-semibold: 600 14px/20px var(--font-sans);
+
+    /* Text xs */
+    --font-text-xs-regular: 400 12px/18px var(--font-sans);
+    --font-text-xs-medium: 500 12px/18px var(--font-sans);
+    --font-text-xs-semibold: 600 12px/18px var(--font-sans);
+
+    /* Shadow xs */
+    --shadow-xs: 0px 1px 2px rgb(16 24 40 / 5%);
+
+    /* Widgets */
+    --header-height: 65px;
+    --footer-height: 56px;
+  }
+
+  /*
+  1. Use a more-intuitive box-sizing model.
+*/
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /*
+    2. Remove default margin
+  */
+  * {
+    margin: 0;
+  }
+
+  /*
+    3. Allow percentage-based heights in the application
+  */
+  html,
+  body {
+    height: 100%;
+  }
+
+  /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /*
+    6. Improve media defaults
+  */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /*
+    7. Remove built-in form typography styles
+  */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  /*
+    8. Avoid text overflows
+  */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  /*
+    9. Create a root stacking context
+  */
+  #root {
+    height: 100%;
+    background-color: var(--color-base-white);
+    isolation: isolate;
+  }
+</style>

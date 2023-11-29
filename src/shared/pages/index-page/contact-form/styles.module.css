@@ -1,0 +1,80 @@
+.root {
+  display: flex;
+  padding: var(--spacing-7xl, 64px) var(--container-padding-mobile, 16px);
+  flex-direction: column;
+}
+
+.wrapper {
+  padding: var(--spacing-7xl, 64px) 0;
+}
+
+.divider {
+  display: block;
+}
+
+.image {
+  display: none;
+}
+
+.icon {
+  margin-bottom: 24px;
+  display: none;
+}
+
+:global .is-visible {
+  display: block;
+}
+
+.title {
+  color: var(--color-text-primary-900, #101828);
+  font: var(--font-display-sm-semibold);
+  margin-bottom: 20px;
+}
+
+.description {
+  color: var(--color-text-tertiary-600, #475467);
+  font: var(--font-text-lg-regular);
+  margin-bottom: 32px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xl, 24px);
+}
+
+@media (min-width: 640px) {
+  .root {
+    padding: var(--spacing-9xl, 96px) var(--container-padding-desktop, 32px);
+    max-width: var(--container-max-width-desktop, 1280px);
+    margin: 0 auto;
+    gap: var(--spacing-7xl, 64px);
+    align-items: center;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: var(--width-lg, 640px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .root {
+    flex-direction: row;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .image {
+    display: flex;
+    background-image: url('./rocket.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: var(--paragraph-max-width, 720px);
+    min-width: var(--width-sm, 480px);
+    border-radius: var(--radius-4xl, 24px);
+  }
+}

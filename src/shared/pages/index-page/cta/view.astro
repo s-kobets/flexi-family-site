@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+
+import { cn } from "@/shared/lib/cn.ts";
+import { useTranslations } from "@/shared/i18n";
+
+import imgGoal from "./goal.png";
+import styles from "./styles.module.css";
+
+interface Props {
+  lang: "en" | "ru";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section
+  class={cn(styles.root, "emerge")}
+  data-effect="zoom"
+  data-expose="true"
+  data-hold="2000"
+>
+  <Image class={styles.image} src={imgGoal} alt="Goal" />
+  <h3 class={styles.title}>
+    {t("cta.title")}
+  </h3>
+  <p class={styles.description}>
+    {t("cta.description")}
+  </p>
+</section>

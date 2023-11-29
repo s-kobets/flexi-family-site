@@ -1,0 +1,41 @@
+---
+import { useTranslations } from "@/shared/i18n";
+import { cn } from "@/shared/lib/cn.ts";
+
+import styles from "./styles.module.css";
+
+interface Props {
+  lang: "en" | "ru";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section
+  class={cn(styles.root, "emerge")}
+  data-effect="slide"
+  data-expose="true"
+  data-hold="500"
+>
+  <div
+    class={cn("emerge", styles["left-band"])}
+    data-effect="slide"
+    data-expose="true"
+    data-hold="500"
+    data-left="10%"
+  >
+  </div>
+  <div
+    class={cn("emerge", styles["right-band"])}
+    data-effect="slide"
+    data-expose="true"
+    data-hold="500"
+    data-right="10%"
+  >
+  </div>
+  <div class={styles.content}>
+    <h2 class={styles.title} set:html={t("why.title")} />
+    <p class={styles.description} set:html={t("why.description")} />
+  </div>
+</section>

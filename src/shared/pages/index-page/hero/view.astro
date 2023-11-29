@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+
+import logoImage from "@/shared/assets/images/logo.svg";
+import { Button } from "@/shared/ui/button";
+import { IconLightning01 } from "@/shared/assets/icons";
+
+import styles from "./styles.module.css";
+import { useTranslations } from "@/shared/i18n";
+import { cn } from "@/shared/lib/cn.ts";
+
+interface Props {
+  lang: "en" | "ru";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class={cn(styles.root, "emerge")} data-effect="slide">
+  <div class={styles.wrapper}>
+    <Image src={logoImage} alt="Flexi Family Innovation Logo" />
+    <p class={cn("emerge", styles.description)} data-effect="slide">
+      {t("hero.description")}
+    </p>
+    <h1
+      class={cn("emerge", styles.title)}
+      set:html={t("hero.title")}
+      data-effect="slide"
+    />
+    <Button class="js-action-button emerge" size="2xl" data-effect="slide">
+      {t("hero.button")}
+      <IconLightning01 class={styles.icon} />
+    </Button>
+  </div>
+  <div class={styles["hero-image"]}></div>
+</section>
+
+<script>
+  const $actionButtonElement = document.querySelector(".js-action-button");
+  const $contactFormSectionElement = document.querySelector(
+    ".js-contact-section",
+  );
+
+  if (!$actionButtonElement || !$contactFormSectionElement) {
+    throw new Error("Can't find elements");
+  }
+
+  const handleActionButtonClick = () => {
+    $contactFormSectionElement.scrollIntoView({ behavior: "smooth" });
+  };
+  $actionButtonElement.addEventListener("click", handleActionButtonClick);
+</script>

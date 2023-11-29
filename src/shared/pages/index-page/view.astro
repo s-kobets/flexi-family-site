@@ -1,0 +1,36 @@
+---
+import { BaseLayout } from "@/layouts";
+
+import { Hero } from "./hero";
+import { Why } from "./why";
+import { Features } from "./features";
+import { CTA } from "./cta";
+import { ContactForm } from "./contact-form";
+import { Footer } from "./footer";
+import styles from "./styles.module.css";
+
+interface Props {
+  lang: "en" | "ru";
+}
+
+const { lang } = Astro.props;
+---
+
+<BaseLayout lang={lang}>
+  <main class={styles.root}>
+    <Hero lang={lang} />
+    <Why lang={lang} />
+    <Features lang={lang} />
+    <CTA lang={lang} />
+    <ContactForm lang={lang} />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .emerge {
+    opacity: 0;
+  }
+</style>
+
+<script src="@/shared/lib/emerge.js"></script>

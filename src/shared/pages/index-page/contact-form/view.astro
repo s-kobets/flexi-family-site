@@ -1,0 +1,185 @@
+---
+import { cn } from "@/shared/lib/cn";
+import { Button } from "@/shared/ui/button";
+import { Input } from "@/shared/ui/input";
+import { Textarea } from "@/shared/ui/textarea";
+import { Divider } from "@/shared/ui/divider";
+import { useTranslations } from "@/shared/i18n";
+
+import styles from "./styles.module.css";
+
+interface Props {
+  lang: "en" | "ru";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const successText = {
+  title: t("contact.form.response.success.title"),
+  description: t("contact.form.response.success.description"),
+};
+const errorText = {
+  title: t("contact.form.response.error.title"),
+  description: t("contact.form.response.error.description"),
+};
+---
+
+<section
+  class={cn("js-contact-section", "emerge", styles.root)}
+  data-effect="slide"
+  data-expose="true"
+  data-hold="2000"
+>
+  <div class={styles.image}></div>
+  <Divider class={styles.divider} />
+  <div class={styles.wrapper}>
+    <svg
+      class={cn("js-contact-icon-success", styles.icon)}
+      xmlns="http://www.w3.org/2000/svg"
+      width="66"
+      height="66"
+      fill="none"
+      viewBox="0 0 66 66"
+    >
+      <rect width="56" height="56" x="5" y="5" fill="#D1FADF" rx="28"></rect>
+      <rect
+        width="56"
+        height="56"
+        x="5"
+        y="5"
+        stroke="#ECFDF3"
+        stroke-width="10"
+        rx="28"></rect>
+      <path
+        stroke="#039855"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m27.75 33 3.5 3.5 7-7m6.417 3.5c0 6.443-5.224 11.667-11.667 11.667S21.334 39.443 21.334 33 26.556 21.333 33 21.333 44.667 26.557 44.667 33Z"
+      ></path>
+    </svg>
+
+    <svg
+      class={cn("js-contact-icon-error", styles.icon)}
+      xmlns="http://www.w3.org/2000/svg"
+      width="66"
+      height="66"
+      fill="none"
+      viewBox="0 0 66 66"
+    >
+      <rect width="56" height="56" x="5" y="5" fill="#FEE4E2" rx="28"></rect>
+      <rect
+        width="56"
+        height="56"
+        x="5"
+        y="5"
+        stroke="#FEF3F2"
+        stroke-width="10"
+        rx="28"></rect>
+      <path
+        stroke="#D92D20"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M33 28.333V33m0 4.667h.012M44.667 33c0 6.443-5.224 11.667-11.667 11.667S21.334 39.443 21.334 33 26.556 21.333 33 21.333 44.667 26.557 44.667 33Z"
+      ></path>
+    </svg>
+    <h3 class={cn("js-contact-title", styles.title)}>
+      {t("contact-form.title")}
+    </h3>
+    <p class={cn("js-contact-description", styles.description)}>
+      {t("contact-form.description")}
+    </p>
+    <form class={cn("js-contact-form", styles.form)}>
+      <Input
+        required
+        name="full_name"
+        label={t("contact-form.name")}
+        placeholder="John Doe"
+        value=""
+      />
+      <Input
+        required
+        name="contact_channel"
+        label={t("contact-form.channel")}
+        placeholder="you@company.com / @nickname / + 15550000000"
+        value=""
+      />
+      <Textarea
+        required
+        name="message"
+        label={t("contact-form.message")}
+        placeholder={t("contact-form.message-placeholder")}
+        value=""
+      />
+      <Button size="xl" type="submit">{t("contact-form.button")}</Button>
+    </form>
+  </div>
+</section>
+
+<script define:vars={{ successText, errorText }}>
+  const $formElement = document.querySelector(".js-contact-form");
+  const $titleElement = document.querySelector(".js-contact-title");
+  const $descriptionElement = document.querySelector(".js-contact-description");
+  const $successIconElement = document.querySelector(
+    ".js-contact-icon-success",
+  );
+  const $errorIconElement = document.querySelector(".js-contact-icon-error");
+
+  if (!$formElement) {
+    throw new Error("Form element not found");
+  }
+
+  const handleSuccess = () => {
+    $successIconElement.classList.add("is-visible");
+  };
+  const handleError = () => {
+    $errorIconElement.classList.add("is-visible");
+  };
+  const handleResponse = ({ title, description, isSuccess = false }) => {
+    $formElement.reset();
+    $formElement.remove();
+
+    $titleElement.textContent = title;
+    $descriptionElement.textContent = description;
+
+    isSuccess ? handleSuccess() : handleError();
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData($formElement);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/.netlify/functions/message", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        handleResponse({
+          title: successText.title,
+          description: successText.description,
+          isSuccess: true,
+        });
+      } else {
+        handleResponse({
+          title: errorText.title,
+          description: errorText.description,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      handleResponse({
+        title: errorText.title,
+        description: errorText.description,
+      });
+    }
+  };
+  $formElement.addEventListener("submit", handleSubmit);
+</script>

@@ -1,0 +1,29 @@
+.root {
+  display: flex;
+  padding: var(--spacing-6xl, 48px) var(--container-padding-mobile, 16px);
+  flex-direction: column;
+  gap: var(--spacing-6xl, 48px);
+  align-items: flex-start;
+  max-width: var(--container-max-width-desktop, 1280px);
+  margin: 0 auto;
+  border-top: 1px solid var(--color-border-secondary, #EAECF0);
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+}
+
+.copy {
+  color: var(--color-text-quarterary-500, #667085);
+  font: var(--font-text-md-regular);
+}
+
+@media (min-width: 640px) {
+  .root {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-6xl, 48px) var(--container-padding-desktop, 32px);
+  }
+}

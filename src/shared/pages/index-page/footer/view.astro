@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+
+import { cn } from "@/shared/lib/cn.ts";
+import logoImage from "@/shared/assets/images/logo.svg";
+
+import styles from "./styles.module.css";
+---
+
+<footer
+  class={cn(styles.root, "emerge")}
+  data-effect="slide"
+  data-expose="true"
+  data-hold="3000"
+>
+  <Image
+    class={styles.logo}
+    src={logoImage}
+    alt="Flexi Family Innovation Logo"
+  />
+  <p class={styles.copy}>© 2023 Flexi Family Innovation</p>
+</footer>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="910" height="669" fill="none" viewBox="0 0 910 669">
+  <mask id="b" width="918" height="918" x="-4" y="-245" maskUnits="userSpaceOnUse" style="mask-type:alpha">
+    <rect width="768" height="768" x="-3.01" y="-77.785" fill="url(#a)" rx="20" transform="rotate(-12.5 -3.01 -77.785)"/>
+  </mask>
+  <g mask="url(#b)">
+    <rect width="95" height="95" x="398.344" y="177.907" stroke="#EAECF0" rx="19.5" transform="rotate(-12.5 398.344 177.907)"/>
+    <rect width="191" height="191" x="341.094" y="141.434" stroke="#EAECF0" rx="19.5" transform="rotate(-12.5 341.094 141.434)"/>
+    <rect width="287" height="287" x="283.842" y="104.961" stroke="#EAECF0" rx="19.5" transform="rotate(-12.5 283.842 104.961)"/>
+    <rect width="383" height="383" x="226.591" y="68.487" stroke="#EAECF0" rx="19.5" transform="rotate(-12.5 226.591 68.487)"/>
+    <rect width="479" height="479" x="169.341" y="32.015" stroke="#EAECF0" rx="19.5" transform="rotate(-12.5 169.341 32.015)"/>
+    <rect width="575" height="575" x="112.089" y="-4.459" stroke="#EAECF0" rx="19.5" transform="rotate(-12.5 112.089 -4.459)"/>
+    <rect width="671" height="671" x="54.837" y="-40.932" stroke="#EAECF0" rx="19.5" transform="rotate(-12.5 54.837 -40.932)"/>
+    <rect width="767" height="767" x="-2.413" y="-77.405" stroke="#EAECF0" rx="19.5" transform="rotate(-12.5 -2.413 -77.405)"/>
+  </g>
+  <defs>
+    <radialGradient id="a" cx="0" cy="0" r="1" gradientTransform="matrix(0 384 -384 0 380.99 306.215)" gradientUnits="userSpaceOnUse">
+      <stop/>
+      <stop offset="1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

@@ -1,0 +1,75 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import { cn } from "@/shared/lib/cn";
+
+import styles from "./styles.module.css";
+
+interface Props extends HTMLAttributes<"input"> {
+  class?: string;
+  name: string;
+  value: string;
+  label?: string;
+  type?: "text" | "email" | "search";
+  hint?: string;
+  variant?: "sm" | "md";
+  error?: string;
+}
+
+const {
+  class: className,
+  name,
+  value,
+  label,
+  type = "text",
+  hint,
+  variant = "sm",
+  error,
+  ...rest
+} = Astro.props;
+const hasError = Boolean(error);
+---
+
+{
+  label ? (
+    <label class={cn(styles["label-only"], className)}>
+      <span class={styles.label}>{label}</span>
+      <input
+        type={type}
+        name={name}
+        class={cn(styles.root, styles[`variant-${variant}`], {
+          [styles["has-error"]]: hasError,
+        })}
+        value={value}
+        {...rest}
+      />
+      {hasError ? (
+        <span class={styles.error}>{error}</span>
+      ) : (
+        hint && <span class={styles.hint}>{hint}</span>
+      )}
+    </label>
+  ) : (
+    <>
+      <input
+        type={type}
+        name={name}
+        class={cn(
+          styles.root,
+          styles[`variant-${variant}`],
+          {
+            [styles["has-error"]]: hasError,
+          },
+          className,
+        )}
+        value={value}
+        {...rest}
+      />
+      {error ? (
+        <span class={styles.error}>{error}</span>
+      ) : (
+        hint && <span class={styles.hint}>{hint}</span>
+      )}
+    </>
+  )
+}

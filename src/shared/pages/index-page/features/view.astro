@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+
+import { cn } from "@/shared/lib/cn";
+import { useTranslations } from "@/shared/i18n";
+
+import imageFeature01 from "./01.png";
+import imageFeature02 from "./02.png";
+import imageFeature03 from "./03.png";
+import imageFeature04 from "./04.png";
+import styles from "./styles.module.css";
+
+interface Feature {
+  imgSrc: ImageMetadata;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  lang: "en" | "ru";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const features: Feature[] = [
+  {
+    imgSrc: imageFeature01,
+    title: t("features.01.title"),
+    description: t("features.01.description"),
+  },
+  {
+    imgSrc: imageFeature02,
+    title: t("features.02.title"),
+    description: t("features.02.description"),
+  },
+  {
+    imgSrc: imageFeature03,
+    title: t("features.03.title"),
+    description: t("features.03.description"),
+  },
+  {
+    imgSrc: imageFeature04,
+    title: t("features.04.title"),
+    description: t("features.04.description"),
+  },
+];
+---
+
+<section class={cn(styles.root)}>
+  <ul class={styles.list}>
+    {
+      features.map(({ imgSrc, title, description }, index) => (
+        <li
+          class={cn(
+            "emerge",
+            styles["list-item"],
+            styles[`list-item-0${index + 1}`],
+          )}
+          data-effect="relax"
+          data-expose="true"
+          data-hold={index * 500}
+        >
+          <Image class={styles.image} src={imgSrc} alt={title} />
+          <h3 class={styles.title}>{title}</h3>
+          <p class={styles.description}>{description}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>

@@ -1,0 +1,49 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import { cn } from "@/shared/lib/cn";
+
+import styles from "./styles.module.css";
+
+interface Props extends HTMLAttributes<"input"> {
+  class?: string;
+  name: string;
+  size?: "sm" | "md";
+  disabled?: boolean;
+  checked?: boolean;
+}
+
+const { class: className, name, size = "sm", disabled, checked } = Astro.props;
+---
+
+<label class={cn(styles.checkbox, className)}>
+  <span
+    class={cn(
+      styles.checkbox__wrapper,
+      styles[`checkbox__wrapper_size_${size}`],
+    )}
+  >
+    <input
+      class={styles.checkbox__input}
+      type="checkbox"
+      name={name}
+      disabled={disabled}
+      checked={checked}
+    />
+    <span class={styles.checkbox__control}>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 12">
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.667"
+          d="M10 3 4.5 8.5 2 6"></path>
+      </svg>
+    </span>
+  </span>
+  <span
+    class={cn(styles.checkbox__label, styles[`checkbox__label_size_${size}`])}
+  >
+    <slot />
+  </span>
+</label>

@@ -1,0 +1,14 @@
+{
+  "name": "riO",
+  "short_name": "riO",
+  "icons": [
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "start_url": "https://rioplatform.io",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "description": "A brand new tool for restaurant opportunities",
+  "background_color": "#ffffff",
+  "scope": "https://rioplatform.io"
+}
