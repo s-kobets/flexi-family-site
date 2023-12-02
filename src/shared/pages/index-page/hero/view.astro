@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import logoImage from "@/shared/assets/images/logo.svg";
 import { Button } from "@/shared/ui/button";
 import { IconLightning01 } from "@/shared/assets/icons";
+import { LanguagePicker } from "@/shared/ui/language-picker";
 
 import styles from "./styles.module.css";
 import { useTranslations } from "@/shared/i18n";
@@ -18,8 +19,11 @@ const t = useTranslations(lang);
 ---
 
 <section class={cn(styles.root, "emerge")} data-effect="slide">
+  <LanguagePicker />
   <div class={styles.wrapper}>
-    <Image src={logoImage} alt="Flexi Family Innovation Logo" />
+    <div class={styles["logo-wrapper"]}>
+      <Image src={logoImage} alt="Flexi Family Innovation Logo" />
+    </div>
     <p class={cn("emerge", styles.description)} data-effect="slide">
       {t("hero.description")}
     </p>
@@ -39,7 +43,7 @@ const t = useTranslations(lang);
 <script>
   const $actionButtonElement = document.querySelector(".js-action-button");
   const $contactFormSectionElement = document.querySelector(
-    ".js-contact-section",
+    ".js-contact-section"
   );
 
   if (!$actionButtonElement || !$contactFormSectionElement) {
