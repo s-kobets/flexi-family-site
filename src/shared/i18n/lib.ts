@@ -6,7 +6,7 @@ export const languages = {
   en: "English",
 };
 
-export const defaultLang = "ru";
+export const defaultLang = "en";
 
 export const translations = {
   en,

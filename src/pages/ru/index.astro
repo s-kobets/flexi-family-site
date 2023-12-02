@@ -1,0 +1,8 @@
+---
+import { IndexPage } from "@/shared/pages/index-page";
+import { getLangFromUrl } from "@/shared/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<IndexPage lang={lang} />
